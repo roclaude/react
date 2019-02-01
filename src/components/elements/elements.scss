@@ -1,0 +1,23 @@
+@import '../../styles/main';
+
+a.button {
+    @include fontStyle($mainFontFamily, $buttonFontSize, 3, 400, normal, $secondaryTextColor);
+	border: 1px solid $secondaryColor;
+    border-radius: 0;
+    padding: 0 20px 0 20px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    text-align: center;
+    text-decoration: none;
+    outline: 0;
+    display: inline-block;
+    cursor: pointer;
+
+    &:visited {
+        color: $secondaryTextColor;
+    }
+
+    &:hover {
+        background-color: $secondaryColor;
+    }
+}

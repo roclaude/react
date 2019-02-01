@@ -1,0 +1,24 @@
+// Links
+//////////
+
+a {
+	color: $mainTextColor;
+	text-decoration: none;
+}
+
+a:visited {
+	color: $mainTextColor;
+}
+
+a:hover, a:focus, a:active {
+	color: $accentTextColor;
+	text-decoration: none;
+}
+
+a:focus {
+	outline: thin dotted;
+}
+
+a:hover, a:active {
+	outline: 0;
+}

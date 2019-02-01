@@ -1,0 +1,9 @@
+@import 'styles/main';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFontFamily;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

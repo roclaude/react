@@ -1,0 +1,63 @@
+@import '../../styles/main';
+
+.App-header {
+	background: #ffffff;
+	padding: $sectionPadding;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+	
+	.navbar {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	
+		&-brand{
+			line-height: 50px;
+			display: flex;
+			align-items: center;
+
+			span {
+				@include fontStyle($mainFontFamily, $mainFontSize, 1, 300, 5px, $mainTextColor);
+				margin-left: 10px;
+				text-transform: uppercase;
+			}
+		}
+		
+		&-toggler {
+
+		}
+		
+		&-nav-wrap {
+			margin-left: auto;
+
+			.navbar-nav {
+				margin: 0;
+				padding: 0;
+				
+				.nav-item {
+					@include fontStyle($defaultFontStyle...);
+					display: inline-block;
+					padding: 5px 10px;
+
+					&.active {
+						
+					}
+
+					.nav-link {
+						@include fontStyle($mainFontFamily, 12px, 1, 700, normal, $mainTextColor);
+						text-transform: uppercase;
+					}
+				}
+			}
+		}
+	}
+}

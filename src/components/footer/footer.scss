@@ -1,0 +1,20 @@
+@import '../../styles/main';
+
+.page-footer {
+    padding: $sectionPadding;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    &-inner {
+        text-align: center;
+        
+        a.social-icon {
+            width: 30px !important;
+            height: 30px !important;
+            margin: 0 5px;
+            float: none;
+        }
+    }
+}

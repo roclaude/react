@@ -1,0 +1,75 @@
+@import '../../styles/main';
+
+$heightHeaderAndFooter: $headerHeight + $footerHeight;
+
+.page {
+
+    &.page-about {
+        color: $secondaryTextColor;
+        min-height: calc(100vh - #{$headerHeight});
+        background: url(../..//images/landing-background.jpg) no-repeat center center fixed;
+        background-size: cover;
+        position: relative;
+        width: 100%;
+        float: left;
+
+        .content-page .banner-wrapper {
+            top: 50%;
+            position: relative;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            text-align: center;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 10px;
+        }
+
+        .content-page {
+            height: calc(100vh - #{$heightHeaderAndFooter});
+            
+            .banner-wrapper {
+                top: 50%;
+                position: relative;
+                transform: translateY(-50%);
+                text-align: center;
+            }
+        }
+    }
+}
+
+.about-box {
+    width: 500px;
+    max-width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+    text-align: left;
+
+    h2.card-title {
+        @include fontStyle($mainFontFamily, 27px, 1, 600, 4px, $secondaryColor);
+
+        img {
+            height: 52px;
+            vertical-align: middle;
+        }
+
+        span {
+            vertical-align: middle;
+            margin-left: 20px;
+        }
+    }
+
+    &-content {
+        font-size: 14px;
+    }
+
+    &-left {
+
+    }
+
+    &-right {
+
+    }
+}

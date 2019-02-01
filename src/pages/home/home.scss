@@ -1,0 +1,42 @@
+@import '../../styles/main';
+
+%headingStyles {
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+}
+
+$heightHeaderAndFooter: $headerHeight + $footerHeight;
+
+.page.page-home {
+    min-height: calc(100vh - #{$headerHeight});
+    background: url(landing-background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+
+    h2 {
+        @extend %headingStyles;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+    }
+
+    h3 {
+        @extend %headingStyles;
+        font-size: 25px;
+        letter-spacing: 10px;
+        font-weight: 400;
+        text-transform: lowercase;
+        margin: 15px 0;
+    }
+
+    .content-page {
+        height: calc(100vh - #{$heightHeaderAndFooter});
+        
+        .banner-wrapper {
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+    }
+}

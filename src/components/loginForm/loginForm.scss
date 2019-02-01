@@ -1,0 +1,47 @@
+@import '../../styles/main';
+
+.login-form-wrap {
+    @extend %centeredBox;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffffb8;
+
+    .login-form-inner {
+        width: 300px;
+        background: #fff;
+        padding: 30px;
+        position: relative;
+
+        button.close-form {
+            color: $secondaryColor;
+            font-size: 24px;
+            transform: rotate(45deg);
+            position: absolute;
+            right: 0;
+            top: 0;
+            border: none;
+            width: auto;
+            padding: 10px;
+            margin: 5px;
+            min-width: initial;
+            cursor: pointer;    
+        }
+
+        form {
+            input {
+                width: 100%;
+            }
+
+            button[type="submit"] {
+                color: $secondaryColor;
+                line-height: 36px;
+                cursor: pointer;
+                margin: 20px 0 0;
+            }
+        }
+    }
+}

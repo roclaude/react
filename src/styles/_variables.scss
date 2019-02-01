@@ -1,0 +1,44 @@
+// Fonts size
+//////////////
+
+$mainFontSize: 14px;
+$hSize: (
+    h1: (3.5 * $mainFontSize),
+    h2: (3.35 * $mainFontSize),
+    h3: (3 * $mainFontSize),
+    h4: (2.5 * $mainFontSize),
+    h5: (2 * $mainFontSize),
+    h6: (1.15 * $mainFontSize)
+);
+$buttonFontSize: 12px;
+
+// Colors
+//////////
+
+$mainColor: #505050;
+$secondaryColor: #f1c40f;
+$mainTextColor: #505050;
+$secondaryTextColor: #ffffff;
+$accentTextColor: #000000;
+$mainBodyBgColor: #f6f6f6;
+$secondaryBodyBgColor: #2d3e4f;
+//$black: #000000;
+//$secondaryColor: #f1c40f;
+
+
+// Fonts Family
+////////////////
+
+$mainFontFamily: "Helvetica Neue", sans-serif;
+
+
+// Default font style
+//////////////////////
+$defaultFontStyle: $mainFontFamily, $mainFontSize, 1, 400, normal, $mainTextColor;
+
+
+// Heights and widths
+//////////////////////
+$sectionPadding: 10px 40px;
+$headerHeight: 52px;
+$footerHeight: 50px;

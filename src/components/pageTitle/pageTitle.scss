@@ -1,0 +1,14 @@
+@import '../../styles/main';
+
+.page-title {
+    background: $secondaryBodyBgColor;
+    padding: $sectionPadding;
+
+    &-inner {
+
+        h1 {
+            @include fontStyle($mainFontFamily, 20px, 1, 700, normal, $secondaryTextColor);
+        }
+    }
+}
+
