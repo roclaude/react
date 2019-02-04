@@ -5,12 +5,17 @@ import AdminPage from '../'
 
 import '../admin.scss'
 
+import firestoreDB from '../../../components/firestore'
 
 class Evaluation extends Component {
 
     constructor(props) {
         super(props)
 
+        this.state = {
+            evaluations: []
+        }
+/*
         this.evaluationsList = [{
             id: 1234567890,
             name: 'Feedback Checkpoint Oct 2018',
@@ -28,14 +33,33 @@ class Evaluation extends Component {
             name: 'Feedback Checkpoint Oct 2015',
             expire: 'Jan 26, 2015 11:59:59 PM'
         }]
+*/
+    }
+
+    componentWillMount() {
+        let assessment = [];
+		let messagesRef = firestoreDB.collection('assessment').get().then(snapshot => {
+			snapshot.docs.forEach(doc => {
+                let item = doc.data();
+                console.log(item);
+               assessment.push(item);
+               this.setState({evaluations: assessment})
+            }, () => {
+                this.setState({evaluations: assessment})
+            })
+		});
     }
 
     render() {
 
+        const { evaluations } = this.state
+
+        console.log( evaluations );
+
         return (
             <AdminPage pageType="evaluation" pageTitle="Evaluation">
-                {this.evaluationsList.map((evaluation, index) =>
-                    <FeedbackBox key={index} title={evaluation.name} evaluationId={evaluation.id} expireDate={evaluation.expire}/>
+                {evaluations.map((evaluation, index) =>
+                    <FeedbackBox key={index} title={evaluation.name} evaluationId="123" expireDate={evaluation.expire}/>
                 )}
             </AdminPage>
         )
