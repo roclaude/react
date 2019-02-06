@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import firestore from 'firestore'
+//import firestore from 'firestore'
 /*
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,

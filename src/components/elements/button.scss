@@ -1,7 +1,7 @@
 @import '../../styles/main';
 
 a.button {
-    @include fontStyle($mainFontFamily, $buttonFontSize, 3, 400, normal, $secondaryTextColor);
+    @include fontStyle($mainFontFamily, $buttonFontSize, 3, 400, normal, $mainTextColor);
 	border: 1px solid $secondaryColor;
     border-radius: 0;
     padding: 0 20px 0 20px;

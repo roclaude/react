@@ -15,6 +15,39 @@ class Evaluation extends Component {
         this.state = {
             evaluations: []
         }
+    }
+
+    componentWillMount() {
+        let assessment = []
+		firestoreDB.collection('assessment').get().then(snapshot => {
+			snapshot.docs.forEach(doc => {
+                let item = doc.data()
+                item.id = doc.id
+                assessment.push(item)
+
+                this.setState({evaluations: assessment})
+            })
+		})
+    }
+
+    render() {
+        const { evaluations } = this.state
+
+        return (
+            <AdminPage pageType="evaluation" pageTitle="Evaluation">
+                <FeedbackBox evaluations={evaluations} />
+            </AdminPage>
+        )
+    }
+}
+
+export default Evaluation
+
+
+
+
+
+
 /*
         this.evaluationsList = [{
             id: 1234567890,
@@ -34,36 +67,3 @@ class Evaluation extends Component {
             expire: 'Jan 26, 2015 11:59:59 PM'
         }]
 */
-    }
-
-    componentWillMount() {
-        let assessment = [];
-		let messagesRef = firestoreDB.collection('assessment').get().then(snapshot => {
-			snapshot.docs.forEach(doc => {
-                let item = doc.data();
-                console.log(item);
-               assessment.push(item);
-               this.setState({evaluations: assessment})
-            }, () => {
-                this.setState({evaluations: assessment})
-            })
-		});
-    }
-
-    render() {
-
-        const { evaluations } = this.state
-
-        console.log( evaluations );
-
-        return (
-            <AdminPage pageType="evaluation" pageTitle="Evaluation">
-                {evaluations.map((evaluation, index) =>
-                    <FeedbackBox key={index} title={evaluation.name} evaluationId="123" expireDate={evaluation.expire}/>
-                )}
-            </AdminPage>
-        )
-    }
-}
-
-export default Evaluation

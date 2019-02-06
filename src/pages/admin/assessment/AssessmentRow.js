@@ -11,8 +11,7 @@ class AssessmentRow extends Component {
 
         this.state = {
             readOnlyRow: true,
-            evaluationDefault: this.props.evaluation,
-            evaluation: this.props.evaluation,
+            id: this.props.evaluation.id,
         }
 
         this.onDeleteHandler    = this.onDeleteHandler.bind(this)
@@ -22,72 +21,67 @@ class AssessmentRow extends Component {
         this.onSaveHandler      = this.onSaveHandler.bind(this)
     }
 
-    componentWillReceiveProps() {
-        console.log('componentWillReceiveProps', this.props.evaluation)
-        this.setState({"evaluation": this.props.evaluation})
-    }
-
+    /**
+     * Delete row
+     */
     onDeleteHandler() {
         const id = this.props.evaluation.id
-        this.props.deleteAction(id)
 
-        console.log('onDeleteHandler: ', id)
+        this.props.deleteAction(id)
     }
 
+    /**
+     * Change value
+     * 
+     * @param {Object} event 
+     */
     onChangeEvaluation(event) {
         const inputs = event.target.parentNode.parentNode.getElementsByTagName('INPUT')
 
-        this.setState({
-            'evaluation': {
-                id: this.props.evaluation.id,
-                name: inputs.name.value,
-                email: inputs.email.value,
-                position: inputs.position.value,
-                company: inputs.company.value,
-                status: inputs.status.value
-            }
-        })
-
-        //console.log(this.state)
+        this.props.changeValueAction(this.props.evaluation.id, inputs)
     }
 
-    onEditHandler(event) {
+    onEditHandler() {
         this.setState({'readOnlyRow': !this.state.readOnlyRow})
-        //console.log(this.state)
+
+        this.props.editAction(this.props.evaluation.id)
     }
 
     onCancelHandler() {
         this.setState({'readOnlyRow': !this.state.readOnlyRow})
+
+        this.props.cancelEditAction(this.props.evaluation.id)
     }
 
-    onSaveHandler() {
+    /**
+     * Save data handler
+     * 
+     * @param {Object} event 
+     */
+    onSaveHandler(event) {
         this.setState({'readOnlyRow': !this.state.readOnlyRow})
 
-        this.props.saveAction(this.state.evaluation)
+        const inputs = event.target.parentNode.parentNode.getElementsByTagName('INPUT')
 
-        //console.log(this.state)
+        this.props.saveAction(this.props.evaluation.id, inputs)
     }
 
     render() {
-        const { readOnlyRow, evaluation } = this.state
-
-//        const { evaluation } = this.props
-
-        const id = this.props.evaluation.id
+        const { readOnlyRow }                   = this.state
+        const { evaluation, inputFieldsOrder, saveAction, cancelEditAction }  = this.props
 
         return (
             <tr>
-                {Object.keys(evaluation).map((keya, index) => 
-                    index > 0 
-                    ? <td key={index}>
+                {inputFieldsOrder.map((name, index) => 
+                    <td key={index}>
                         <input 
                             type="text" 
-                            name={keya}
-                            value={evaluation[keya] ? evaluation[keya] : ''} 
+                            name={name}
+                            value={evaluation[name] ? evaluation[name] : ''} 
                             readOnly={readOnlyRow} 
                             onChange={this.onChangeEvaluation} />
-                        </td>
-                    : null )}
+                    </td>
+                )}
 
                 <td>
                     {!readOnlyRow ? <button onClick={this.onSaveHandler}>Save</button> : null}
@@ -99,11 +93,22 @@ class AssessmentRow extends Component {
         )
     }
 }
-/*
+
 AssessmentRow.propTypes = {
+    evaluation: PropTypes.object || {},
+    inputFieldsOrder: PropTypes.array || [],
+    saveAction: PropTypes.func || null,
+    changeValueAction: PropTypes.func || null,
+    deleteAction: PropTypes.func || null,
     editAction: PropTypes.func || null,
-    deleteAction: PropTypes.func || null
+    cancelEditAction: PropTypes.func || null,
 }
-*/
 
 export default AssessmentRow
+
+/*
+    {!readOnlyRow ? <button onClick={this.onSaveHandler}>Save</button> : null}
+    {!readOnlyRow ? <button onClick={this.onCancelHandler}>Cancel</button> : null}
+    {readOnlyRow ? <button onClick={this.onEditHandler}>Edit</button> : null}
+    {readOnlyRow ? <button onClick={this.onDeleteHandler}>Delete</button> : null}
+*/
