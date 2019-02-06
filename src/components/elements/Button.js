@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './elements.scss'
+
+import './button.scss'
 
 export default class Button extends Component {
 
@@ -12,10 +13,13 @@ export default class Button extends Component {
 
     render() {
 
-        const { text, className, ...props }  = this.props
+        const { 
+            text, 
+            className, 
+            ...rest }  = this.props
 
         return(
-            <a className={this.defaultClassName + className} { ...props }>
+            <a className={this.defaultClassName + className} { ...rest }>
                 {text}
             </a>
         )

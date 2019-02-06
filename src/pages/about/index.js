@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './about.scss'
 
-import Button from '../../components/elements'
+import Button from '../../components/elements/Button'
 import AboutBox from './AboutBox'
 
 import icon1 from './about_1.png'

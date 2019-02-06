@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './home.scss'
 
 import Footer from '../../components/footer'
-import Button from '../../components/elements'
+import Button from '../../components/elements/Button'
 
 import LoginForm from '../../components/loginForm'
 

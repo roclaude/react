@@ -7,14 +7,21 @@ class FeedbackBox extends Component {
 
     render() {
 
-        const {title, expireDate, evaluationId} = this.props;
+        const { evaluations } = this.props
 
         return (
-            <div className="feedback feedback-wrap">
-                <div className="feedback-title">
-                <Link to={`/assessment/${evaluationId}`}>{title}</Link>
-                </div>
-                <div className="feedbackdate">{expireDate}</div>
+            <div>
+                {evaluations.map((evaluation, index) => (
+                    <div key={index} className="feedback feedback-wrap">
+                        <div className="feedback-title">
+                        <Link to={`/assessment/${evaluation.id}`}>{evaluation.name}</Link>
+                        </div>
+                        <div className="feedbackdate">
+                            <span>Expires on: </span>
+                            {evaluation.expire}
+                        </div>
+                    </div>
+                )) }
             </div>
         )
     }
