@@ -20,4 +20,12 @@ a.button {
     &:hover {
         background-color: $secondaryColor;
     }
+
+    &.open-modal-btn {
+        margin: 6px 8px 20px 0;
+    }
+
+    &.normal-login {
+        color: #ffffff
+    }
 }
