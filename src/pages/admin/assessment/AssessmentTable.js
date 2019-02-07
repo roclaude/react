@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import AssessmentRow from './AssessmentRow'
+import AssessmentTableTitle from './AssessmentTableTitle'
 
 import './assessment.scss'
 
@@ -10,35 +11,44 @@ class AssessmentTable extends Component {
 
     render() {
         const { 
-            columnTitles, 
-            sortedColumn, 
+            tableColumn, 
+            sortColumn, 
+            sortedColumnType,
             data,
             editAction,
             cancelEditAction,
             deleteAction,
             saveAction,
             changeValueAction,
-            inputFieldsOrder,
+            addEvaluatorAction,
             ...rest 
         } = this.props
 
+        console.log('data: ' + data)
+
+        const inputFieldsOrder = tableColumn.map(col => col.type)
+
+        console.log('inputFieldsOrder ',  inputFieldsOrder )
+
         return (
             <table {...rest}>
-                {columnTitles ? (
+                {tableColumn ? (
                     <thead>
                         <tr>
-                            {columnTitles.map((item, index) => 
-                                <th 
+                            {tableColumn.map((item, index) => 
+                                <AssessmentTableTitle 
                                     key={index} 
-                                    onClick={item.orderFunc} 
-                                    className={item.orderFunc ? 'sort' + (sortedColumn === item.name ? ' active' : '') : null}
-                                >
-                                    {item.name}
-                                </th>
+                                    type={item.type}
+                                    title={item.title} 
+                                    sortColumn={sortColumn}
+                                    sortCol={item.sortCol}
+                                    sortedColumnType={sortedColumnType}
+                                />
                             )}
                         </tr>
                     </thead>
                 ) : null}
+
                 {data ? (
                     <tbody>
                     {data.map((item, index) =>
@@ -48,12 +58,14 @@ class AssessmentTable extends Component {
                             editAction={editAction} 
                             deleteAction={deleteAction}
                             cancelEditAction={cancelEditAction}
-                            changeValueAction={changeValueAction} 
-                            inputFieldsOrder={inputFieldsOrder}
-                            saveAction={saveAction} />
+                            changeValueAction={changeValueAction}
+                            addEvaluatorAction={addEvaluatorAction}
+                            saveAction={saveAction}
+                            inputFieldsOrder={inputFieldsOrder} />
                     )}
                     </tbody>
                 ) : null}
+
             </table>
         )
     }
@@ -61,14 +73,33 @@ class AssessmentTable extends Component {
 
 AssessmentTable.propTypes = {
     data: PropTypes.array || [],
-    columnTitles: PropTypes.array || null,
-    sortedColumn: PropTypes.string || null,
+    tableColumn: PropTypes.array || [],
+    sortedColumnType: PropTypes.string || null,
     editAction: PropTypes.func || null,
     cancelEditAction: PropTypes.func || null,
     deleteAction: PropTypes.func || null,
     saveAction: PropTypes.func || null,
     changeValueAction: PropTypes.func || null,
-    inputFieldsOrder: PropTypes.array || [],
 }
 
 export default AssessmentTable
+
+
+
+/*
+                {data ? (
+                    <tbody>
+                    {data.map((item, index) =>
+                        <AssessmentRow 
+                            key={index} 
+                            evaluation={item} 
+                            editAction={editAction} 
+                            deleteAction={deleteAction}
+                            cancelEditAction={cancelEditAction}
+                            changeValueAction={changeValueAction}
+                            addEvaluatorAction={addEvaluatorAction}
+                            saveAction={saveAction} />
+                    )}
+                    </tbody>
+                ) : null}
+*/
